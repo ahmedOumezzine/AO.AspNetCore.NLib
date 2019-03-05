@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AO.AspNetCore.NLib", "AO.AspNetCore.NLib\AO.AspNetCore.NLib.csproj", "{D5378640-7210-4A46-8DAF-DC80C5D8D26B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AO.Nlib.Demo", "AO.Nlib.Demo\AO.Nlib.Demo.csproj", "{1E8AAF2C-1F4E-4EF9-87E0-F8AB5E8D6500}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D5378640-7210-4A46-8DAF-DC80C5D8D26B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5378640-7210-4A46-8DAF-DC80C5D8D26B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5378640-7210-4A46-8DAF-DC80C5D8D26B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5378640-7210-4A46-8DAF-DC80C5D8D26B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E8AAF2C-1F4E-4EF9-87E0-F8AB5E8D6500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E8AAF2C-1F4E-4EF9-87E0-F8AB5E8D6500}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E8AAF2C-1F4E-4EF9-87E0-F8AB5E8D6500}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E8AAF2C-1F4E-4EF9-87E0-F8AB5E8D6500}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {90EA213C-FDF6-4745-9A40-F4EDB57CAF7A}
+	EndGlobalSection
+EndGlobal
