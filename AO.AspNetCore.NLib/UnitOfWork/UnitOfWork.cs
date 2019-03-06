@@ -20,6 +20,10 @@ namespace AO.AspNetCore.NLib
         {
             dbContext = dbContextFactory.GetDbContext();
         }
+        public UnitOfWork(DbContext dbContextFactory)
+        {
+            dbContext = dbContextFactory;
+        }
 
         public Dictionary<Type, object> repositories = new Dictionary<Type, object>();
 

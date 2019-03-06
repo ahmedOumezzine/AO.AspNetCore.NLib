@@ -5,14 +5,15 @@ using System.Reflection;
 using System.Threading.Tasks;
 using AO.AspNetCore.NLib;
 using AO.Nlib.Demo.Contexts;
-using AO.Nlib.Demo.Data;
 using AO.Nlib.Demo.Models;
+using AO.Nlib.Demo.Module;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -33,26 +34,27 @@ namespace AO.Nlib.Demo
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-            services.AddScoped<IDbInitializer, DbInitializer>();
-
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            // Create the container builder to register services with Autofac container.  
+            // Add framework services.  
+            services.AddDbContext<ApplicationDbContext>(options =>
+              options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+              .AddEntityFrameworkStores<ApplicationDbContext>()
+              .AddDefaultTokenProviders();
+            services.AddMvc();
+             // create a Autofac container builder
             var builder = new ContainerBuilder();
+            // read service collection to Autofac
             builder.Populate(services);
-            builder.RegisterType<AO.AspNetCore.NLib.UnitOfWork>().As<AO.AspNetCore.NLib.IUnitOfWork>().InstancePerDependency();
-            var ApplicationContainer = builder.Build();
-            // Create the IServiceProvider based on the container.  
+            // use and configure Autofac
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
+            // build the Autofac container
+            ApplicationContainer = builder.Build();
+            // creating the IServiceProvider out of the Autofac container
             return new AutofacServiceProvider(ApplicationContainer);
         }
 
+        // IContainer instance in the Startup class 
+        public IContainer ApplicationContainer { get; private set; }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

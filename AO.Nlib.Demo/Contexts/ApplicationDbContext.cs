@@ -16,11 +16,18 @@ namespace AO.Nlib.Demo.Contexts
     }
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public ApplicationDbContext()
+        {
+
+        }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
-      //  public DbSet<Employee> Students { get; set; }
+        //  public DbSet<Employee> Students { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
