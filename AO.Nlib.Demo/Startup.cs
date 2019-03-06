@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using AO.AspNetCore.NLib;
 using AO.Nlib.Demo.Contexts;
+using AO.Nlib.Demo.Data;
 using AO.Nlib.Demo.Models;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
@@ -16,6 +17,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace AO.Nlib.Demo
 {
@@ -37,6 +39,7 @@ namespace AO.Nlib.Demo
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            services.AddScoped<IDbInitializer, DbInitializer>();
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -54,9 +57,15 @@ namespace AO.Nlib.Demo
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
+
+                // Browser Link is not compatible with Kestrel 1.1.0
+                // For details on enabling Browser Link, see https://go.microsoft.com/fwlink/?linkid=840936
+                // app.UseBrowserLink();
             }
             else
             {
@@ -68,6 +77,7 @@ namespace AO.Nlib.Demo
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
 
             app.UseMvc(routes =>
             {

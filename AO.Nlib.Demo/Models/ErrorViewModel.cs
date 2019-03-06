@@ -8,6 +8,8 @@ namespace AO.Nlib.Demo.Models
 {
     public class Employee
     {
+        [Key]
+        public Guid Id { get; set; }
         public int EmpId
         {
             get;
