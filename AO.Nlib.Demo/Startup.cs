@@ -46,6 +46,7 @@ namespace AO.Nlib.Demo
             // read service collection to Autofac
             builder.Populate(services);
             // use and configure Autofac
+            builder.RegisterType<ApplicationDbContext>().As<DbContext>();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
             // build the Autofac container
             ApplicationContainer = builder.Build();
