@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Ahmed Oumezzine</Authors>
+    <Company>Ahmed Oumezzine</Company>
+    <PackageProjectUrl>https://github.com/ahmedOumezzine/AO.AspNetCore.NLib</PackageProjectUrl>
+    <PackageIconUrl>https://www.dotnetcurry.com/images/aspnet-core/dependency-injection.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/ahmedOumezzine/AO.AspNetCore.NLib</RepositoryUrl>
+    <Copyright>Ahmed Oumezzine</Copyright>
+    <Description>Dependency injection in ASP.NET Core</Description>
+    <PackageTags>Dependency injection in ASP.NET Core</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
